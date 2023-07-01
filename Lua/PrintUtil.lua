@@ -2,7 +2,7 @@
 local PrintUtil = {}
 
 --- 打印基础类型数组
----@param tbArray ValueType[] @数组
+---@param tbArray table @数组
 ---@return string
 function PrintUtil.PrintArray(tbArray)
     if tbArray == nil then

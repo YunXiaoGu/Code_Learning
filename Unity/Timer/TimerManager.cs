@@ -6,24 +6,24 @@ namespace Framework.Timer
 {
     public class TimerManager : MonoBehaviour
     {
-        private List<Timer> _timers = new List<Timer>();
+        private List<Timer> timers = new List<Timer>();
 
         // buffer adding timers so we don't edit a collection during iteration
-        private List<Timer> _timersToAdd = new List<Timer>();
+        private List<Timer> timersToAdd = new List<Timer>();
 
-        private static TimerManager _instance;
+        private static TimerManager instance;
 
         public static TimerManager Instance
         {
             get
             {
-                if (_instance == null)
+                if (instance == null)
                 {
                     GameObject managerObject = new GameObject { name = "TimerManager" };
-                    _instance = managerObject.AddComponent<TimerManager>();
+                    instance = managerObject.AddComponent<TimerManager>();
                 }
 
-                return _instance;
+                return instance;
             }
         }
 
@@ -36,23 +36,23 @@ namespace Framework.Timer
 
         public void RegisterTimer(Timer timer)
         {
-            _timersToAdd.Add(timer);
+            timersToAdd.Add(timer);
         }
 
         public void CancelAllTimers()
         {
-            foreach (Timer timer in _timers)
+            foreach (Timer timer in timers)
             {
                 timer.Cancel();
             }
 
-            _timers = new List<Timer>();
-            _timersToAdd = new List<Timer>();
+            timers = new List<Timer>();
+            timersToAdd = new List<Timer>();
         }
 
         public void PauseAllTimers()
         {
-            foreach (Timer timer in _timers)
+            foreach (Timer timer in timers)
             {
                 timer.Pause();
             }
@@ -60,7 +60,7 @@ namespace Framework.Timer
 
         public void ResumeAllTimers()
         {
-            foreach (Timer timer in _timers)
+            foreach (Timer timer in timers)
             {
                 timer.Resume();
             }
@@ -68,18 +68,18 @@ namespace Framework.Timer
 
         private void Update()
         {
-            if (_timersToAdd.Count > 0)
+            if (timersToAdd.Count > 0)
             {
-                _timers.AddRange(_timersToAdd);
-                _timersToAdd.Clear();
+                timers.AddRange(timersToAdd);
+                timersToAdd.Clear();
             }
 
-            foreach (Timer timer in _timers)
+            foreach (Timer timer in timers)
             {
                 timer.Update();
             }
 
-            _timers.RemoveAll(t => t.IsDone);
+            timers.RemoveAll(t => t.IsDone);
         }
     }
 }

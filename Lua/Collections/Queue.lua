@@ -71,6 +71,7 @@ function Queue:New()
     ---@param Dequeue fun(self:Queue):any @出队
     ---@param Clear fun(self:Queue):void @清除队列
     ---@param Peek fun(self:Queue):any @获取队首元素,但不删除队首元素
+    ---@param ToString fun(self:Queue):string
     local tbQueue = {}
 
     tbQueue.nFirst = 0

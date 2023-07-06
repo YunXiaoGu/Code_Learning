@@ -71,6 +71,7 @@ function Stack:New()
     ---@param Pop fun(self:Stack):any @出栈
     ---@param Clear fun(self:Stack):void @清除栈
     ---@param Peek fun(self:Stack):any @获取栈顶元素,但不删除栈顶元素
+    ---@param ToString fun(self:Stack):string
     local tbStack = {}
 
     tbStack.nTop = 0

@@ -35,4 +35,18 @@ function StringUtil.Split(str, strDelimiter, bIgnoreEmptyStr)
     return tbArr
 end
 
+-- 定义邮箱格式的正则表达式模式
+local StrPattern = "[A-Za-z0-9$.%%%+%-]+@[A-Za-z0-9$.%%%+%-]+%.%w%w%w?%w?"
+--- 判断字符串是否符合邮箱格式
+---@param str string
+---@return boolean
+function StringUtil.IsEmail(str)
+    local matchResult = string.match(str, StrPattern)
+    if matchResult then
+      return true
+    else
+      return false
+    end
+end
+
 return StringUtil

@@ -1,4 +1,4 @@
-namespace FileDownloader
+namespace FileDownload
 {
     public class FileDownloadManager
     {

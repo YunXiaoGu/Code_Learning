@@ -40,3 +40,5 @@ perf(GameBattle): 优化角色战斗
 # 页脚
 任何破坏性变更（Breaking Changes）都应该在页脚中说明，也常用来引用本次提交修复的Issue。
 Breaking Changes应该以“BREAKING CHANGE:”开头，然后紧跟一个空格或两个换行符，其他要求与前面一致。
+
+测试Gitee push到Github

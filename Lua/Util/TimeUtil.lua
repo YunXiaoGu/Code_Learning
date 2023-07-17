@@ -1,6 +1,13 @@
 ---@class TimeUtil @时间工具类
 local TimeUtil = {}
 
+--- 格式化时间戳
+---@param nTimestamp number @时间戳
+---@return string @ Example: "2023-07-15 10:36:52"
+function TimeUtil.FmtTime(nTimestamp)
+    return os.date("%Y-%m-%d %H:%M:%S", nTimestamp)
+end
+
 --- 检查时间戳与日期的关系
 ---@param nTimestamp number @时间戳
 ---@param nYear number @年份
@@ -27,11 +34,25 @@ function TimeUtil.CheckTime(nTimestamp, nYear, nMonth, nDay, nHour, nMinute, nSe
     return 0
 end
 
---- 格式化时间戳
----@param nTimestamp number @时间戳
----@return string @ Example: "2023-07-15 10:36:52"
-function TimeUtil.FmtTime(nTimestamp)
-    return os.date("%Y-%m-%d %H:%M:%S", nTimestamp)
+--- 获取下一分钟的时间戳
+---@return number
+function TimeUtil.GetNextMinute()
+    local tbDate = os.date("!*t")
+    tbDate.sec = 0
+    tbDate.min = tbDate.min + 1
+    tbDate.isdst = false
+    return os.time(tbDate)
+end
+
+--- 获取下一小时的时间戳
+---@return number
+function TimeUtil.GetNextHour()
+    local tbDate = os.date("!*t")
+    tbDate.sec = 0
+    tbDate.min = 0
+    tbDate.hour = tbDate.hour + 1
+    tbDate.isdst = false
+    return os.time(tbDate)
 end
 
 return TimeUtil

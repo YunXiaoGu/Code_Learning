@@ -1,31 +1,15 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
+using Singleton;
 
-namespace Framework.Timer
+namespace Timer
 {
-    public class TimerManager : MonoBehaviour
+    public class TimerManager : MonoSingleton<TimerManager>
     {
         private List<Timer> timers = new List<Timer>();
 
         // buffer adding timers so we don't edit a collection during iteration
         private List<Timer> timersToAdd = new List<Timer>();
-
-        private static TimerManager instance;
-
-        public static TimerManager Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    GameObject managerObject = new GameObject { name = "TimerManager" };
-                    instance = managerObject.AddComponent<TimerManager>();
-                }
-
-                return instance;
-            }
-        }
 
         public Timer CreateTimer(float duration, Action onComplete, Action<float> onUpdate = null, bool isLooped = false, bool useRealTime = false)
         {

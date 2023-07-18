@@ -1,11 +1,10 @@
 using System;
 using UnityEngine;
 
-namespace Framework.Timer
+namespace Timer
 {
     public class Timer
     {
-        #region Public Properties/Fields
 
         public float Duration { get; }
         public bool IsLooped { get; }
@@ -16,9 +15,7 @@ namespace Framework.Timer
         public bool IsCancelled => timeElapsedBeforeCancel.HasValue;
         public bool IsDone => IsCompleted || IsCancelled;
 
-        #endregion
 
-        #region Private Properties/Fields
 
         private readonly Action onComplete;
         private readonly Action<float> onUpdate;
@@ -32,7 +29,6 @@ namespace Framework.Timer
         private float? timeElapsedBeforeCancel;
         private float? timeElapsedBeforePause;
 
-        #endregion
 
         /// <summary>
         /// 创建一个定时器

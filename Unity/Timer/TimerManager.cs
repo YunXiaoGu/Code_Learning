@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Singleton;
 
+// GitHub链接：https://github.com/akbiggs/UnityTimer
 namespace Timer
 {
     public class TimerManager : MonoSingleton<TimerManager>

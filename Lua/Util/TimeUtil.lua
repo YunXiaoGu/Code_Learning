@@ -55,4 +55,23 @@ function TimeUtil.GetNextHour()
     return os.time(tbDate)
 end
 
+--- 将指定日期转换成时间戳
+---@param nYear number @年份
+---@param nMonth number|nil @月份
+---@param nHour number|nil @小时
+---@param nMinute number|nil @分钟
+---@param nSecond number|nil @秒
+---@return number
+function TimeUtil.ConvertToTimestamp(nYear, nMonth, nDay, nHour, nMinute, nSecond)
+    local dateTable = {
+        year = nYear,
+        month = nMonth or 1,
+        day = nDay or 1,
+        hour = nHour or 0,
+        min = nMinute or 0,
+        sec = nSecond or 0
+    }
+    return os.time(dateTable)
+end
+
 return TimeUtil

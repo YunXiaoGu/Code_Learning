@@ -20,7 +20,7 @@ function TimeUtil.FmtTime(nTimestamp)
 end
 
 --- 格式化日期
----@param tDate table @日期
+---@param tDate osdate @日期
 ---@return string @ Example: "2023-07-15 10:36:52"
 function TimeUtil.FmtDate(tDate)
     return os.date("%Y-%m-%d %H:%M:%S", tDate.year, tDate.month, tDate.day, tDate.hour, tDate.min, tDate.sec)

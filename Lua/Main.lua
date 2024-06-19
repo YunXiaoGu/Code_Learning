@@ -52,12 +52,12 @@ queue:Enqueue(function() end)
 print(queue:ToString())
 
 print("\n------------------------------------------------------------------------- 时间工具")
--- 当前时间
-print(TimeUtil.FmtTime(os.time()))
--- 下一分钟
-print(TimeUtil.FmtTime(TimeUtil.GetNextMinute()))
--- 下一小时
-print(TimeUtil.FmtTime(TimeUtil.GetNextHour()))
+print("当前时间", TimeUtil.FmtTime(os.time()))
+print("下一分钟", TimeUtil.FmtTime(TimeUtil.GetNextMinute()))
+print("下一小时", TimeUtil.FmtTime(TimeUtil.GetNextHour()))
+print("下一天", TimeUtil.FmtTime(TimeUtil.GetNextDay()))
+print("下一周", TimeUtil.FmtTime(TimeUtil.GetNextWeek()))
+print("下一月", TimeUtil.FmtTime(TimeUtil.GetNextMonth()))
 -- 判断时间戳
 local nTimestamp = os.time()
 local nTargetTime = os.time({

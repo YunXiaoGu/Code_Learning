@@ -70,3 +70,15 @@ local nTargetTime = os.time({
 })
 local nResult = TimeUtil.CheckTime(nTimestamp, 2023, 7, 15, 12, 0, 0)
 print("当前日期:" .. TimeUtil.FmtTime(nTimestamp), "指定日期:" .. TimeUtil.FmtTime(nTargetTime), "是否相等", nResult)
+
+
+local date1 = os.date("*t", os.time())
+local date2 = os.date("*t", os.time({
+    year = 2024,
+    month = 6,
+    day = 21,
+    hour = 10,
+    min = 1,
+    sec = 1
+}))
+print(PrintUtil.FmtDateList({ date1, date2 }))

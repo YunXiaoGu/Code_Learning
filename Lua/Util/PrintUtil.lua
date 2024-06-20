@@ -70,4 +70,18 @@ function PrintUtil.PrintTable(t, INDENT, LF)
     print(str)
 end
 
+--- 打印日期列表
+---@param tDateList osdate[] @日期列表
+function PrintUtil.FmtDateList(tDateList)
+    local strHead = "---------------------------------------------------------------\n"
+    strHead = strHead .. "| year | month | day | hour | min | sec | wday | yday | isdst |\n"
+    -- strHead = strHead .. "---------------------------------------------------------------\n"
+    local strLine = ""
+    for _, tDate in ipairs(tDateList) do
+        strLine = strLine .. string.format("| %-4d | %-5d | %-3d | %-4d | %-3d | %-3d | %-4d | %-4d | %-4s |\n", tDate.year, tDate.month, tDate.day, tDate.hour, tDate.min, tDate.sec, tDate.wday, tDate.yday, tDate.isdst)
+    end
+    strLine = strLine .. "---------------------------------------------------------------\n"
+    return strHead .. strLine
+end
+
 return PrintUtil

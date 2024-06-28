@@ -4,6 +4,10 @@ using Singleton;
 
 namespace Timer
 {
+    /// <summary>
+    /// 定时器
+    /// <para>依赖MonoBehaviour Update()来实现定时器更新</para>
+    /// </summary>
     public class TimerManager : MonoSingleton<TimerManager>
     {
         private List<Timer> timers = new List<Timer>();

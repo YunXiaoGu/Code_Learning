@@ -5,8 +5,8 @@ namespace UI.Component
 {
     /// <summary>
     /// 不规则点击区域组件
-    /// <para>与Empty4Raycast组件不同的是，该组件可以和Button组件组合使用，实现不规则点击区域</para>
     /// </summary>
+    [RequireComponent(typeof(CanvasRenderer))]
     public class PolygonRaycast : MaskableGraphic, ICanvasRaycastFilter
     {
         public Vector2[] points = new Vector2[0];

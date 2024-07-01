@@ -11,8 +11,8 @@ namespace UI.Component.Editor
     {
         private PolygonRaycast component;
 
-        private bool canEditCollider;
-        private List<bool> intersects;
+        private bool canEditCollider; // 是否开启编辑碰撞体
+        private List<bool> intersects; // 用于标记相交的线段
 
         private void OnEnable()
         {
@@ -64,7 +64,7 @@ namespace UI.Component.Editor
                 if (GUILayout.Button("+", GUILayout.Width(30)))
                 {
                     Undo.RecordObject(component, "Edit PolygonRaycast Point");
-                    Vector2[] points = component.points;
+                    Vector2[] points = component.Points;
                     if (points == null)
                     {
                         points = new Vector2[3];
@@ -79,14 +79,13 @@ namespace UI.Component.Editor
 
                         points = newPoints;
                     }
-
-                    component.points = points;
+                    component.Points = points;
                 }
 
                 if (GUILayout.Button("-", GUILayout.Width(30)))
                 {
                     Undo.RecordObject(component, "Edit PolygonRaycast Point");
-                    Vector2[] points = component.points;
+                   Vector2[] points = component.Points;
                     if (points != null && points.Length > 3)
                     {
                         Vector2[] newPoints = new Vector2[points.Length - 1];
@@ -94,7 +93,7 @@ namespace UI.Component.Editor
                         {
                             newPoints[i] = points[i];
                         }
-                        component.points = newPoints;
+                        component.Points = newPoints;
                     }
                 }
 
@@ -111,7 +110,7 @@ namespace UI.Component.Editor
                     points[1] = new Vector2(-offset.x, size.y - offset.y);
                     points[2] = new Vector2(size.x - offset.x, size.y - offset.y);
                     points[3] = new Vector2(size.x - offset.x, -offset.y);
-                    component.points = points;
+                    component.Points = points;
                 }
             }
 
@@ -121,12 +120,12 @@ namespace UI.Component.Editor
         // 绘制碰撞体
         private void DrawCollider()
         {
-            if (component.points == null || component.points.Length < 3)
+            if (component.Points == null || component.Points.Length < 3)
             {
                 return;
             }
 
-            Vector2[] points = component.points;
+            Vector2[] points = component.Points;
 
             intersects.Clear();
             for (int i = 0; i < points.Length; i++)
@@ -175,7 +174,7 @@ namespace UI.Component.Editor
                         EditorUtility.SetDirty(component);
                         Undo.RecordObject(component, "Edit PolygonRaycast Collider");
                         points[i] = component.transform.InverseTransformPoint(newWorldPoint);
-                        component.points = points;
+                        component.Points = points;
                     }
 
                     // 操作点上的序号，大一点

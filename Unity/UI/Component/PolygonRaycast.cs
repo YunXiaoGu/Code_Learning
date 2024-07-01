@@ -9,7 +9,29 @@ namespace UI.Component
     [RequireComponent(typeof(CanvasRenderer))]
     public class PolygonRaycast : MaskableGraphic, ICanvasRaycastFilter
     {
-        public Vector2[] points = new Vector2[0];
+        [SerializeField]
+        private Vector2[] points;
+
+        public Vector2[] Points
+        {
+            get => points;
+            set
+            {
+                if (value.Length < 3)
+                {
+                    points = new Vector2[3];
+                    for (int i = 0; i < 3; i++)
+                    {
+                        points[i] = i < value.Length ? value[i] : Vector2.zero;
+                    }
+                }
+                else
+                {
+                    points = value;
+                    SetAllDirty();
+                }
+            }
+        }
 
         protected override void OnPopulateMesh(VertexHelper toFill)
         {
@@ -22,7 +44,6 @@ namespace UI.Component
             {
                 return false;
             }
-
             return OverlapPoint(local, points);
         }
 
@@ -42,18 +63,17 @@ namespace UI.Component
                 return false;
             }
 
-            int j = polygon.Length - 1;
+            int n = polygon.Length - 1;
             bool oddNodes = false;
-            for (int k = 0; k < polygon.Length; k++)
+            for (int i = 0; i < polygon.Length; ++i)
             {
-                Vector2 point1 = polygon[k];
-                Vector2 point2 = polygon[j];
+                Vector2 point1 = polygon[i];
+                Vector2 point2 = polygon[n];
                 if ((point1.y > point.y != point2.y > point.y) && (point.x < (point2.x - point1.x) * (point.y - point1.y) / (point2.y - point1.y) + point1.x))
                 {
                     oddNodes = !oddNodes;
                 }
-
-                j = k;
+                n = i;
             }
 
             return oddNodes;

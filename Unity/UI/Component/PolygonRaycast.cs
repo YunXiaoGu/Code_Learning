@@ -17,19 +17,8 @@ namespace UI.Component
             get => points;
             set
             {
-                if (value.Length < 3)
-                {
-                    points = new Vector2[3];
-                    for (int i = 0; i < 3; i++)
-                    {
-                        points[i] = i < value.Length ? value[i] : Vector2.zero;
-                    }
-                }
-                else
-                {
-                    points = value;
-                    SetAllDirty();
-                }
+                points = value;
+                SetAllDirty();
             }
         }
 
@@ -58,7 +47,7 @@ namespace UI.Component
         /// </remarks>
         bool OverlapPoint(Vector2 point, Vector2[] polygon)
         {
-            if (polygon.Length < 3)
+            if (polygon == null || polygon.Length < 3)
             {
                 return false;
             }
